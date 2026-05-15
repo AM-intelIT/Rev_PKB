@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Akademik: Pendidikan Kepelbagaian Budaya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --muted: #737373;
+            --border: #e5e5e5;
+            --card-bg: #ffffff;
+        }
+
+        .dark {
+            --bg: #000000;
+            --text: #ffffff;
+            --muted: #a3a3a3;
+            --border: #262626;
+            --card-bg: #0a0a0a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .minimal-border {
+            border: 1px solid var(--border);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        }
+
+        .active .accordion-content {
+            max-height: 5000px;
+            transition: max-height 1s ease-in;
+        }
+
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .active .rotate-icon {
+            transform: rotate(45deg);
+        }
+
+        .essay-body {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .section-label {
+            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigasi -->
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-black/90 backdrop-blur-sm border-b border-gray-100 dark:border-neutral-900">
+        <div class="max-w-3xl mx-auto px-6 h-20 flex items-center justify-between">
+            <span class="font-bold tracking-tighter text-lg uppercase">Akademik.</span>
+            <button id="themeToggle" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 dark:border-neutral-800">
+                <i class="fas fa-moon text-xs dark:hidden"></i>
+                <i class="fas fa-sun text-xs hidden dark:block"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 py-20">
+        
+        <!-- Header -->
+        <header class="mb-24">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-8 italic">Jawapan Latih Tubi.</h1>
+            <p class="text-gray-500 dark:text-neutral-400 text-lg leading-relaxed">
+                Salinan tepat mengikut dokumen asal bagi persediaan Peperiksaan Akhir Pendidikan Kepelbagaian Budaya.
+            </p>
+        </header>
+
+        <!-- BAHAGIAN A -->
+        <section class="mb-32">
+            <div class="section-label font-black text-gray-400 uppercase mb-10">Bahagian A: Struktur</div>
+            
+            <div class="space-y-4">
+                <!-- Soalan 1(a) -->
+                <div class="minimal-border rounded-lg cursor-pointer overflow-hidden" onclick="toggleAccordion(this)">
+                    <div class="p-8 flex justify-between items-center bg-gray-50/50 dark:bg-neutral-900/50">
+                        <h4 class="font-bold text-sm uppercase">Soalan 1(a) — 5 Markah</h4>
+                        <i class="fas fa-plus rotate-icon text-xs"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="p-8 essay-body text-gray-600 dark:text-neutral-300 border-t border-gray-100 dark:border-neutral-900">
+                            <p class="mb-6 italic text-sm text-gray-400">“Rangkakan aktiviti-aktiviti sokongan bagi guru untuk mengenali keperluan individu murid yang mempunyai latar belakang budaya yang berbeza.”</p>
+                            <p>Guru boleh menjalankan sesi perkenalan dan soal selidik bagi memahami latar belakang budaya, bahasa dan keperluan murid. Contohnya, guru bertanya tentang adat atau bahasa yang digunakan di rumah.</p>
+                            <p class="mt-4">Selain itu, guru boleh mengadakan aktiviti Hari Kebudayaan untuk memberi peluang murid berkongsi budaya masing-masing. Aktiviti ini membantu guru mengenali identiti budaya pelajar dengan lebih mendalam.</p>
+                            <p class="mt-4">Seterusnya, guru boleh berinteraksi dengan ibu bapa melalui perjumpaan atau komunikasi dalam talian bagi memahami gaya pembelajaran dan nilai budaya murid.</p>
+                            <p class="mt-4">Guru juga boleh menggunakan pemerhatian semasa aktiviti kumpulan untuk mengenal pasti cara murid berkomunikasi dan bekerjasama dengan rakan berlainan budaya.</p>
+                            <p class="mt-4">Akhir sekali, guru boleh melibatkan komuniti dalam aktiviti sekolah seperti bengkel kraftangan dan festival makanan tradisional untuk memahami pengalaman budaya murid secara autentik.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soalan 1(b) -->
+                <div class="minimal-border rounded-lg cursor-pointer overflow-hidden" onclick="toggleAccordion(this)">
+                    <div class="p-8 flex justify-between items-center bg-gray-50/50 dark:bg-neutral-900/50">
+                        <h4 class="font-bold text-sm uppercase">Soalan 1(b) — 10 Markah</h4>
+                        <i class="fas fa-plus rotate-icon text-xs"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="p-8 essay-body text-gray-600 dark:text-neutral-300 border-t border-gray-100 dark:border-neutral-900">
+                            <p class="mb-6 italic text-sm text-gray-400">“Analisis kaedah pengajaran kepelbagaian budaya di bilik darjah dan bincangkan pola, trend serta kesannya terhadap perkembangan sosial dan akademik pelajar daripada latar belakang budaya yang berbeza.”</p>
+                            <p>Kaedah pengajaran kepelbagaian budaya bertujuan mewujudkan pembelajaran yang inklusif dan menghormati perbezaan budaya pelajar. Pendekatan ini penting dalam konteks masyarakat majmuk untuk mengurangkan prejudis dan membina perpaduan.</p>
+                            <p class="mt-4">Antara kaedah yang berkesan ialah <strong>Pembelajaran Koperatif</strong>. Guru membahagikan pelajar kepada kumpulan kecil pelbagai kaum untuk bekerjasama dalam projek atau perbincangan. Pola ini menunjukkan peningkatan dalam kemahiran komunikasi antara budaya dan toleransi. Melalui interaksi aktif, pelajar belajar menghargai perspektif rakan yang berbeza latar belakang etnik.</p>
+                            <p class="mt-4">Selain itu, pendekatan <strong>Budaya Responsif</strong> menjadi trend utama di mana guru menyepadukan elemen budaya dalam bahan pengajaran. Sebagai contoh, guru menggunakan cerita rakyat, muzik atau sejarah pelbagai kaum dalam kurikulum. Kesannya, pelajar berasa identiti budaya mereka dihargai, seterusnya meningkatkan minat dan motivasi akademik mereka.</p>
+                            <p class="mt-4">Trend penggunaan <strong>Teknologi Digital</strong> seperti multimedia dan video interaktif juga membantu memperkenalkan budaya secara visual dan menarik. Pelajar boleh menonton dokumentari tentang cara hidup etnik yang berbeza untuk meningkatkan pemahaman mereka.</p>
+                            <p class="mt-4">Secara keseluruhannya, kaedah pengajaran yang sensitif budaya memberikan kesan sosial yang positif seperti pengurangan stereotaip dan peningkatan perpaduan kaum. Dari aspek akademik, persekitaran yang inklusif membantu pelajar mencapai potensi mereka dengan lebih yakin.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soalan 2(a) -->
+                <div class="minimal-border rounded-lg cursor-pointer overflow-hidden" onclick="toggleAccordion(this)">
+                    <div class="p-8 flex justify-between items-center bg-gray-50/50 dark:bg-neutral-900/50">
+                        <h4 class="font-bold text-sm uppercase">Soalan 2(a) — 5 Markah</h4>
+                        <i class="fas fa-plus rotate-icon text-xs"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="p-8 essay-body text-gray-600 dark:text-neutral-300 border-t border-gray-100 dark:border-neutral-900">
+                            <p class="mb-6 italic text-sm text-gray-400">“Nyatakan ciri-ciri pengajaran berasaskan projek dalam memupuk pemikiran kritis dan kreatif murid dalam konteks kepelbagaian budaya.”</p>
+                            <p>Pengajaran berasaskan projek melibatkan penyelesaian masalah dunia sebenar yang memerlukan murid berfikir secara kritis untuk mencari solusi berkaitan isu perpaduan atau budaya.</p>
+                            <p class="mt-4">Ciri seterusnya ialah penghasilan artifak kreatif seperti video, poster atau pameran yang mempamerkan keunikan budaya etnik di Malaysia.</p>
+                            <p class="mt-4">Aktiviti ini juga menggalakkan murid melihat isu daripada pelbagai perspektif budaya melalui kerja kumpulan kolaboratif.</p>
+                            <p class="mt-4">Pembentangan hasil projek meningkatkan kemahiran komunikasi dan hujah kritis murid dalam mempertahankan idea mereka.</p>
+                            <p class="mt-4">Akhir sekali, ia memberikan pengalaman pembelajaran aktif yang autentik di mana murid mengaplikasikan pengetahuan dalam situasi masyarakat majmuk.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soalan 2(b) -->
+                <div class="minimal-border rounded-lg cursor-pointer overflow-hidden" onclick="toggleAccordion(this)">
+                    <div class="p-8 flex justify-between items-center bg-gray-50/50 dark:bg-neutral-900/50">
+                        <h4 class="font-bold text-sm uppercase">Soalan 2(b) — 10 Markah</h4>
+                        <i class="fas fa-plus rotate-icon text-xs"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="p-8 essay-body text-gray-600 dark:text-neutral-300 border-t border-gray-100 dark:border-neutral-900">
+                            <p class="mb-6 italic text-sm text-gray-400">“Huraikan kompetensi guru dalam menangani kepelbagaian budaya di bilik darjah.”</p>
+                            <p>Kompetensi guru merangkumi <strong>Pengetahuan Budaya</strong> yang mendalam. Guru harus memahami adat resam, kepercayaan dan sensitiviti setiap kaum untuk mengelakkan salah faham dalam bilik darjah.</p>
+                            <p class="mt-4">Kedua ialah <strong>Kemahiran Komunikasi Antara Budaya</strong>. Guru perlu mahir menggunakan bahasa yang jelas dan bahan visual bagi merapatkan jurang komunikasi antara murid pelbagai latar belakang bahasa.</p>
+                            <p class="mt-4">Ketiga adalah <strong>Sikap Terbuka dan Toleransi</strong>. Guru mestilah menunjukkan rasa hormat kepada semua murid tanpa prejudis, sekaligus menjadi suri teladan dalam memupuk keharmonisan kaum.</p>
+                            <p class="mt-4">Akhir sekali, guru perlu menguasai <strong>Strategi Pengajaran Inklusif</strong> seperti pedagogi kesaksamaan (equity pedagogy) yang memberi peluang sama rata kepada semua murid untuk berjaya secara akademik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BAHAGIAN B -->
+        <section class="mb-32">
+            <div class="section-label font-black text-gray-400 uppercase mb-10">Bahagian B: Esei Penuh</div>
+            
+            <div class="space-y-24">
+                <!-- Esei 1 -->
+                <article>
+                    <h2 class="text-2xl font-bold mb-8">SOALAN 1 — 20 MARKAH (TEORI VYGOTSKY)</h2>
+                    <div class="essay-body text-gray-700 dark:text-neutral-300 space-y-6">
+                        <p>Teori Perkembangan Kognitif Vygotsky sangat relevan dalam pendidikan di Malaysia yang terdiri daripada masyarakat pelbagai kaum. Teori ini menekankan bahawa pembelajaran berlaku melalui interaksi sosial dan pengaruh budaya. Dua konsep utama iaitu Zone of Proximal Development (ZPD) dan Scaffolding memainkan peranan penting dalam membantu guru mengurus bilik darjah pelbagai budaya.</p>
+                        <p>ZPD membantu guru mengenal pasti tahap potensi murid berdasarkan latar belakang budaya mereka. Dalam konteks Malaysia, guru boleh merapatkan jurang antara apa yang murid boleh lakukan secara sendiri dengan apa yang mereka boleh capai dengan bantuan. Contohnya, guru boleh menggunakan pengetahuan sedia ada murid tentang budaya mereka (seperti murid luar bandar di Sabah atau Sarawak) sebagai titik mula untuk memperkenalkan topik yang lebih sukar melalui alat bantuan visual.</p>
+                        <p>Selain itu, konsep Scaffolding atau bantuan sementara diberikan mengikut keperluan murid berlainan latar belakang. Guru boleh menyepadukan bahan sastera atau cerita rakyat pelbagai kaum (Iban, Kadazan, Melayu, Cina, India) dalam pengajaran untuk mengajar nilai murni dan bahasa. Penggunaan bahan yang mencerminkan identiti murid menjadikan pembelajaran lebih bermakna. Melalui interaksi sosial dalam aktiviti koperatif, murid bukan sahaja berkembang secara akademik tetapi juga membina empati dan toleransi kaum selaras dengan pandangan Vygotsky bahawa minda berkembang dalam persekitaran sosial yang kaya.</p>
+                        <p>Walau bagaimanapun, terdapat cabaran dalam mengaplikasikan teori ini seperti kekangan masa untuk menyediakan bahan pengajaran yang pelbagai dan pengaruh stereotaip daripada persekitaran keluarga murid yang kadangkala menghalang interaksi terbuka antara kaum.</p>
+                        <p>Kesimpulannya, pengaplikasian teori Vygotsky membantu guru mewujudkan suasana pembelajaran inklusif. Melalui ZPD dan Scaffolding yang sensitif budaya, guru dapat meningkatkan potensi setiap murid sambil memupuk perpaduan nasional dalam kalangan generasi muda Malaysia.</p>
+                    </div>
+                </article>
+
+                <div class="h-px bg-gray-100 dark:bg-neutral-900 w-full"></div>
+
+                <!-- Esei 2 -->
+                <article>
+                    <h2 class="text-2xl font-bold mb-8">SOALAN 2 — 20 MARKAH (MODEL DEARDORFF)</h2>
+                    <div class="essay-body text-gray-700 dark:text-neutral-300 space-y-6">
+                        <p>Model Proses Kecekapan Komunikasi Antara Budaya Deardorff menekankan bahawa kecekapan komunikasi bermula daripada sikap dalaman individu yang kemudiannya diterjemahkan dalam tingkah laku luaran. Bagi seorang guru seperti Rizal yang mengurus bilik darjah pelbagai kaum, penguasaan elemen-elemen dalam model ini sangat penting bagi mewujudkan keharmonisan.</p>
+                        <p>Pertama, elemen Sikap (Attitude) merangkumi rasa hormat, keterbukaan dan rasa ingin tahu tanpa stereotaip. Rizal perlu menunjukkan sikap positif terhadap semua budaya muridnya agar mereka berasa selamat dan dihargai. Sikap terbuka membolehkan guru memberi peluang yang saksama kepada setiap murid tanpa mengira latar belakang etnik.</p>
+                        <p>Elemen kedua ialah Pengetahuan dan Kemahiran. Rizal perlu memahami adat resam, agama dan norma komunikasi muridnya untuk mengelakkan salah faham. Beliau juga perlu mahir menggunakan strategi komunikasi seperti penggunaan alat bantu visual dan bahasa yang mudah difahami oleh semua murid.</p>
+                        <p>Seterusnya, elemen Refleksi Dalaman membolehkan guru menilai semula persepsi kendiri terhadap budaya murid. Rizal perlu sentiasa bermuhasabah tentang kualiti interaksinya dengan pelajar bagi memastikan beliau tidak bersikap bias. Manakala elemen Tingkah Laku Luaran melibatkan pengurusan bilik darjah yang inklusif melalui aktiviti pembelajaran koperatif dan projek budaya bagi menggalakkan interaksi antara pelajar pelbagai kaum. Contohnya, pelajar boleh menghasilkan projek berkaitan makanan tradisional atau pakaian etnik di Malaysia secara berkumpulan. Aktiviti seperti Hari Kebudayaan dan Festival Makanan Tradisional juga membantu pelajar mengalami sendiri budaya rakan mereka secara autentik.</p>
+                        <p>Selain itu, Rizal boleh mengaplikasikan dimensi Pengurangan Prejudis dalam Model Banks dengan melaksanakan aktiviti debat, perbincangan dan simulasi budaya untuk mengurangkan stereotaip antara kaum. Aktiviti kolaboratif membantu pelajar memahami perspektif budaya lain dan meningkatkan empati serta toleransi.</p>
+                        <p>Walau bagaimanapun, terdapat cabaran dalam melaksanakan komunikasi antara budaya seperti perbezaan bahasa, pengaruh stereotaip keluarga dan jurang sosial antara pelajar. Namun begitu, guru boleh mengatasi cabaran ini melalui pembelajaran koperatif, penggunaan teknologi dan penglibatan ibu bapa dalam aktiviti sekolah. Kerjasama antara sekolah dan komuniti juga membantu membina kefahaman budaya yang lebih mendalam.</p>
+                        <p>Kesimpulannya, Model Proses Kecekapan Komunikasi Antara Budaya Deardorff sangat penting dalam membantu guru mengurus bilik darjah pelbagai budaya secara efektif. Melalui sikap terbuka, pengetahuan budaya, kemahiran komunikasi dan aktiviti pembelajaran inklusif, Rizal dapat mewujudkan suasana pembelajaran yang harmoni serta meningkatkan perpaduan dalam kalangan pelajar pelbagai budaya di Malaysia.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-20 border-t border-gray-100 dark:border-neutral-900 bg-gray-50/30 dark:bg-neutral-950">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <div class="font-black text-[10px] uppercase tracking-[0.5em] text-gray-400 mb-4">Nota Arkib Akademik</div>
+            <p class="text-xs text-gray-400">© 2024 Portal Persediaan Peperiksaan Akhir</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mod Tema
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Accordion
+        function toggleAccordion(element) {
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
