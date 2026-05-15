@@ -1,305 +1,406 @@
-import React, { useState, useEffect } from 'react';
-import { Moon, Sun, BookOpen, Brain, Lightbulb, FileText, HelpCircle, GraduationCap, ChevronRight, CheckCircle } from 'lucide-react';
-
-const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
-  const [activeTab, setActiveTab] = useState('home');
-
-  // Menguruskan mod gelap/terang
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
-
-  const tabs = [
-    { id: 'home', label: 'Fokus Exam', icon: <GraduationCap size={18} /> },
-    { id: 'topik1', label: 'Topik 1: PKB', icon: <BookOpen size={18} /> },
-    { id: 'topik2', label: 'Topik 2: Teori', icon: <Brain size={18} /> },
-    { id: 'aplikasi', label: 'Strategi & Contoh', icon: <Lightbulb size={18} /> },
-    { id: 'esei', label: 'Formula Esei', icon: <FileText size={18} /> },
-    { id: 'soalan', label: 'Soalan & Jawapan', icon: <HelpCircle size={18} /> },
-  ];
-
-  const ContentCard = ({ title, children, icon }) => (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-6 border-l-4 border-blue-500 transition-all duration-300">
-      <div className="flex items-center mb-4">
-        {icon && <div className="text-blue-500 mr-3">{icon}</div>}
-        <h3 className="text-xl font-bold text-gray-800 dark:text-white">{title}</h3>
-      </div>
-      <div className="text-gray-600 dark:text-gray-300 space-y-3 leading-relaxed text-left">
-        {children}
-      </div>
-    </div>
-  );
-
-  return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
-      {/* Bahagian Header */}
-      <header className="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-sm px-4 py-4 lg:px-8 border-b dark:border-gray-700">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="bg-blue-600 p-2 rounded-lg">
-              <BookOpen className="text-white" size={24} />
-            </div>
-            <div>
-              <h1 className="text-lg md:text-xl font-extrabold text-gray-900 dark:text-white tracking-tight text-left">TERP4043</h1>
-              <p className="text-xs text-blue-600 dark:text-blue-400 font-bold uppercase text-left">Pedagogi Kepelbagaian Budaya</p>
-            </div>
-          </div>
-          <button 
-            onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-yellow-400 hover:bg-gray-200 transition-colors"
-          >
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-        </div>
-      </header>
-
-      {/* Navigasi Tab */}
-      <nav className="bg-white dark:bg-gray-800 border-b dark:border-gray-700 overflow-x-auto no-scrollbar sticky top-[73px] z-40">
-        <div className="max-w-6xl mx-auto flex">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center px-4 py-4 text-sm font-medium whitespace-nowrap border-b-2 transition-all ${
-                activeTab === tab.id
-                  ? 'border-blue-600 text-blue-600 dark:text-blue-400'
-                  : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-blue-500'
-              }`}
-            >
-              <span className="mr-2">{tab.icon}</span>
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      </nav>
-
-      {/* Kandungan Utama */}
-      <main className="max-w-4xl mx-auto px-4 py-8 pb-24">
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERP4043 - Nota Master A+ Pedagogi Kepelbagaian Budaya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
-        {/* Tab: Home */}
-        {activeTab === 'home' && (
-          <div className="animate-fadeIn">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 mb-8 text-white shadow-xl">
-              <h2 className="text-3xl font-bold mb-2 text-left">Nota Master A+ Exam</h2>
-              <p className="text-blue-100 mb-6 text-left">Panduan komprehensif untuk skor cemerlang Topik 1 & 2 berdasarkan MK dan silibus terkini.</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20">
-                  <h4 className="font-bold text-lg mb-1 text-left">Sasaran</h4>
-                  <p className="text-sm text-left">Jawapan lengkap mengikut kehendak pemeriksa.</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20">
-                  <h4 className="font-bold text-lg mb-1 text-left">Teori Wajib</h4>
-                  <p className="text-sm text-left">Fokus aplikasi praktikal dalam bilik darjah.</p>
-                </div>
-              </div>
-            </div>
-            <ContentCard title="Peta Strategi Menjawab" icon={<ChevronRight />}>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <div className="bg-green-100 text-green-600 p-1 rounded mt-1 mr-3"><CheckCircle size={16}/></div>
-                  <p><strong>Bank Jawapan:</strong> Tab "Soalan & Jawapan" kini dikemas kini dengan esei penuh.</p>
-                </li>
-                <li className="flex items-start">
-                  <div className="bg-green-100 text-green-600 p-1 rounded mt-1 mr-3"><CheckCircle size={16}/></div>
-                  <p><strong>Huraian Mendalam:</strong> Pastikan setiap teori disokong oleh impak sosial murid.</p>
-                </li>
-              </ul>
-            </ContentCard>
-          </div>
-        )}
-
-        {/* Tab: Topik 1 */}
-        {activeTab === 'topik1' && (
-          <div className="animate-fadeIn">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-left">Topik 1: Pedagogi Kepelbagaian Budaya</h2>
-            <ContentCard title="Definisi & Prinsip">
-              <p>PKB merangkumi strategi yang membantu guru menguruskan kepelbagaian etnik secara harmoni. Antara prinsip utama:</p>
-              <ul className="list-disc list-inside mt-2 space-y-1">
-                <li>Kesedaran kendiri tentang bias budaya.</li>
-                <li>Integrasi kandungan kurikulum yang inklusif.</li>
-                <li>Pendidikan ekuiti (peluang sama rata).</li>
-              </ul>
-            </ContentCard>
-          </div>
-        )}
-
-        {/* Tab: Topik 2 */}
-        {activeTab === 'topik2' && (
-          <div className="animate-fadeIn space-y-6">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-left">Topik 2: Aplikasi Teori Utama</h2>
-            <ContentCard title="Teori Kunci" icon={<Brain />}>
-              <p>Hafal 4 teori ini sebagai asas jawapan esei anda:</p>
-              <div className="grid grid-cols-1 gap-4 mt-2">
-                <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded"><strong>Bronfenbrenner:</strong> Hubungan murid dengan persekitaran bertingkat.</div>
-                <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded"><strong>Vygotsky:</strong> Kepentingan interaksi sosial (MKO, ZPD, Scaffolding).</div>
-                <div className="p-3 bg-orange-50 dark:bg-orange-900/20 rounded"><strong>James Banks:</strong> Dimensi pendidikan multikultural & tahap integrasi.</div>
-                <div className="p-3 bg-teal-50 dark:bg-teal-900/20 rounded"><strong>Deardorff:</strong> Proses kompetensi antara budaya (Sikap-Ilmu-Hasil).</div>
-              </div>
-            </ContentCard>
-          </div>
-        )}
-
-        {/* Tab: Aplikasi */}
-        {activeTab === 'aplikasi' && (
-          <div className="animate-fadeIn">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-left">Aplikasi & Strategi</h2>
-            <ContentCard title="Strategi PdP Malaysia" icon={<Lightbulb />}>
-              <p>Masukkan contoh-contoh ini dalam esei:</p>
-              <ul className="list-disc list-inside space-y-2 mt-2">
-                <li>Penggunaan nama watak pelbagai kaum dalam soalan matematik (Ali, Ah Chong, Muthu, Dayang).</li>
-                <li>Aktiviti "Show and Tell" bertemakan warisan keluarga.</li>
-                <li>Penyediaan sudut budaya (Sudut Warisan) di dalam bilik darjah.</li>
-              </ul>
-            </ContentCard>
-          </div>
-        )}
-
-        {/* Tab: Formula Esei */}
-        {activeTab === 'esei' && (
-          <div className="animate-fadeIn">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-left">Formula Menjawab Esei A+</h2>
-            <ContentCard title="Struktur Wajib">
-              <div className="space-y-4">
-                <div className="bg-blue-100 dark:bg-blue-900 p-4 rounded-lg">
-                  <p className="font-bold text-blue-800 dark:text-blue-100">Formula Kunci: T + H + CM + I</p>
-                  <p className="text-xs mt-1">(Teori + Huraian + Contoh Malaysia + Implikasi)</p>
-                </div>
-                <p>Contoh: "Mengikut <strong>Teori Vygotsky (T)</strong>, interaksi sosial kritikal bagi kognitif. Di <strong>Malaysia (CM)</strong>, guru boleh membentuk kumpulan heterogen. <strong>Huraian (H)</strong>: Murid yang lebih mahir bantu yang lemah. <strong>Implikasi (I)</strong>: Nilai kerjasama dipupuk."</p>
-              </div>
-            </ContentCard>
-          </div>
-        )}
-
-        {/* Tab: Soalan & Jawapan (LENGKAP) */}
-        {activeTab === 'soalan' && (
-          <div className="animate-fadeIn space-y-8">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 border-b pb-2 text-left">Jawapan Penuh Contoh Soalan</h2>
-            
-            {/* Soalan 1 - 5 Markah */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-t-8 border-blue-500 overflow-hidden text-left">
-              <span className="text-xs font-bold text-blue-600 bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full border border-blue-200 uppercase">Struktur (5 Markah)</span>
-              <h3 className="text-lg font-extrabold mt-4 mb-4 dark:text-white">S1: Terangkan maksud Zone of Proximal Development (ZPD) mengikut Vygotsky dalam konteks PKB.</h3>
-              <div className="bg-gray-50 dark:bg-gray-700/50 p-5 rounded-lg text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                <p className="font-bold mb-2">Jawapan Penuh:</p>
-                <p>
-                  <strong>ZPD</strong> merujuk kepada jurang antara tahap perkembangan sebenar murid (apa yang boleh dilakukan sendiri) dengan tahap perkembangan potensi (apa yang boleh dicapai dengan bantuan bimbingan). 
-                </p>
-                <p className="mt-2">
-                  Dalam konteks <strong>Pedagogi Kepelbagaian Budaya</strong>, guru mengenal pasti latar belakang budaya murid untuk memberikan sokongan yang sesuai. Contohnya, murid dari luar bandar yang kurang mahir bahasa pengantar dibantu melalui <strong>scaffolding</strong> oleh guru atau rakan sebaya yang lebih mahir (MKO). Ini membolehkan murid tersebut mencapai potensi akademik tanpa rasa terasing, sekali gus merapatkan jurang prestasi antara etnik.
-                </p>
-              </div>
-            </div>
-
-            {/* Soalan 2 - 10 Markah */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-t-8 border-green-500 overflow-hidden text-left">
-              <span className="text-xs font-bold text-green-600 bg-green-50 dark:bg-green-900/30 px-3 py-1 rounded-full border border-green-200 uppercase">Huraian (10 Markah)</span>
-              <h3 className="text-lg font-extrabold mt-4 mb-4 dark:text-white">S2: Huraikan aplikasi Pendekatan Transformasi James Banks dalam bilik darjah untuk memupuk perpaduan.</h3>
-              <div className="bg-gray-50 dark:bg-gray-700/50 p-5 rounded-lg text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                <p className="font-bold mb-2">Jawapan Penuh:</p>
-                <p>
-                  <strong>Pendekatan Transformasi</strong> merupakan tahap ketiga dalam kurikulum multikultural James Banks di mana struktur kurikulum diubah untuk membolehkan murid melihat konsep dari perspektif pelbagai budaya.
-                </p>
-                <ul className="list-disc list-inside mt-2 space-y-2">
-                  <li><strong>Integrasi Kandungan:</strong> Guru memasukkan sumbangan tokoh pelbagai etnik dalam subjek Sejarah. Contohnya, tidak hanya fokus kepada satu kaum, tetapi membincangkan sumbangan kolektif dalam perjuangan kemerdekaan (T+H+CM).</li>
-                  <li><strong>Berfikir Secara Kritikal:</strong> Murid diajar untuk menganalisis isu sosial dari sudut pandang kumpulan yang berbeza. Ini membantu mengurangkan stereotaip dan bias terhadap kaum lain.</li>
-                  <li><strong>Impak:</strong> Apabila murid memahami warisan kaum lain, rasa hormat dan empati akan terbina. Ini membolehkan persekitaran sekolah yang inklusif dan mengurangkan konflik etnik di peringkat sekolah lagi (Implikasi).</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Soalan 3 - 20 Markah (Esei) */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-t-8 border-red-500 overflow-hidden text-left">
-              <span className="text-xs font-bold text-red-600 bg-red-50 dark:bg-red-900/30 px-3 py-1 rounded-full border border-red-200 uppercase">Esei (20 Markah)</span>
-              <h3 className="text-lg font-extrabold mt-4 mb-4 dark:text-white">S3: Analisis persekitaran sekolah menggunakan Teori Ekologi Bronfenbrenner bagi meningkatkan keharmonian kaum di Malaysia.</h3>
-              <div className="bg-gray-50 dark:bg-gray-700/50 p-6 rounded-lg text-sm text-gray-700 dark:text-gray-300 leading-relaxed space-y-4">
-                <p className="font-bold text-red-600 border-b pb-1 dark:text-red-400">Analisis Esei Penuh:</p>
-                
-                <div>
-                  <p className="font-bold">1. Pendahuluan:</p>
-                  <p>Keharmonian kaum merupakan elemen penting dalam sistem pendidikan Malaysia. Mengikut Teori Ekologi Bronfenbrenner, perkembangan individu dipengaruhi oleh sistem persekitaran yang saling berkaitan. Sekolah bertindak sebagai agen sosialisasi utama untuk membentuk perpaduan melalui pelbagai lapisan sistem ekologi.</p>
-                </div>
-
-                <div>
-                  <p className="font-bold">2. Mikrosistem (Interaksi Langsung):</p>
-                  <p>Sistem ini melibatkan persekitaran yang paling dekat dengan murid seperti bilik darjah. Guru boleh meningkatkan keharmonian dengan memastikan setiap aktiviti kumpulan adalah heterogen (pelbagai kaum). Contohnya, dalam subjek Pendidikan Jasmani, murid bekerjasama dalam pasukan sukan tanpa mengira etnik. Ini membina kepercayaan dan nilai kerjasama (CM+I).</p>
-                </div>
-
-                <div>
-                  <p className="font-bold">3. Mesosistem (Hubungan Antara Mikrosistem):</p>
-                  <p>Sistem ini merujuk kepada hubungan antara dua mikrosistem, contohnya hubungan antara sekolah dan ibu bapa. Program RIMUP (Rancangan Integrasi Murid Untuk Perpaduan) yang melibatkan ibu bapa dalam hari sukan sekolah atau sambutan perayaan di sekolah dapat mengukuhkan mesej perpaduan yang konsisten antara rumah dan sekolah.</p>
-                </div>
-
-                <div>
-                  <p className="font-bold">4. Eksosistem (Persekitaran Luar):</p>
-                  <p>Sistem ini tidak melibatkan murid secara langsung tetapi memberi kesan kepada mereka. Contohnya, dasar yang dibuat oleh agensi luar seperti PDRM atau NGO dalam menganjurkan ceramah kesedaran perpaduan di sekolah. Keputusan pengurusan sekolah untuk menyediakan kantin yang mesra sensitiviti budaya (makanan halal/vegetarian) juga merupakan aplikasi eksosistem yang menyokong keharmonian.</p>
-                </div>
-
-                <div>
-                  <p className="font-bold">5. Makrosistem (Budaya & Dasar):</p>
-                  <p>Sistem ini melibatkan ideologi, undang-undang dan nilai negara. Penerapan Rukun Negara dan Dasar Pendidikan Kebangsaan dalam kurikulum merupakan tunjang utama. Apabila murid memahami nilai "Kesetiaan kepada Raja dan Negara", jati diri sebagai warga Malaysia yang bertoleransi akan terbentuk dengan lebih kukuh.</p>
-                </div>
-
-                <div>
-                  <p className="font-bold">6. Kronosistem (Perubahan Masa):</p>
-                  <p>Sistem ini merujuk kepada perubahan masa. Penggunaan teknologi dan media sosial pada masa kini boleh digunakan untuk merapatkan jurang geografi antara murid Sabah, Sarawak dan Semenanjung melalui pertukaran budaya secara maya (Online Cultural Exchange). Ini memastikan perpaduan sentiasa relevan dengan peredaran zaman.</p>
-                </div>
-
-                <div>
-                  <p className="font-bold italic">7. Kesimpulan:</p>
-                  <p>Kesimpulannya, perpaduan kaum tidak boleh dicapai melalui satu aspek sahaja. Sinergi antara semua sistem ekologi dalam Teori Bronfenbrenner adalah perlu bagi melahirkan modal insan yang menghargai kepelbagaian sebagai satu kekuatan nasional.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </main>
-
-      {/* Footer Navigasi (Mobile) */}
-      <footer className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t dark:border-gray-700 py-3 md:hidden">
-        <div className="flex justify-around items-center">
-          <button onClick={() => setActiveTab('home')} className={`flex flex-col items-center ${activeTab === 'home' ? 'text-blue-600' : 'text-gray-500'}`}>
-            <GraduationCap size={20} />
-            <span className="text-[10px] mt-1">Exam</span>
-          </button>
-          <button onClick={() => setActiveTab('topik1')} className={`flex flex-col items-center ${activeTab === 'topik1' ? 'text-blue-600' : 'text-gray-500'}`}>
-            <BookOpen size={20} />
-            <span className="text-[10px] mt-1">Konsep</span>
-          </button>
-          <button onClick={() => setActiveTab('topik2')} className={`flex flex-col items-center ${activeTab === 'topik2' ? 'text-blue-600' : 'text-gray-500'}`}>
-            <Brain size={20} />
-            <span className="text-[10px] mt-1">Teori</span>
-          </button>
-          <button onClick={() => setActiveTab('soalan')} className={`flex flex-col items-center ${activeTab === 'soalan' ? 'text-blue-600' : 'text-gray-500'}`}>
-            <HelpCircle size={20} />
-            <span className="text-[10px] mt-1">Q&A</span>
-          </button>
-        </div>
-      </footer>
-
-      {/* Animasi Paparan */}
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
-        .animate-fadeIn {
-          animation: fadeIn 0.4s ease-out forwards;
-        }
+
         .no-scrollbar::-webkit-scrollbar {
-          display: none;
+            display: none;
         }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
-    </div>
-  );
-};
 
-export default App;
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Dark mode custom classes */
+        .dark {
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+
+        .dark .bg-white {
+            background-color: #1f2937;
+        }
+
+        .dark .text-gray-900 {
+            color: #f9fafb;
+        }
+
+        .dark .text-gray-600 {
+            color: #d1d5db;
+        }
+
+        .dark .border-gray-700 {
+            border-color: #374151;
+        }
+
+        .dark .bg-gray-50 {
+            background-color: #111827;
+        }
+
+        .dark .bg-gray-100 {
+            background-color: #374151;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm px-4 py-4 lg:px-8 border-b transition-colors duration-300 dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-blue-600 p-2 rounded-lg">
+                    <i data-lucide="book-open" class="text-white w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-extrabold tracking-tight">TERP4043</h1>
+                    <p class="text-xs text-blue-600 dark:text-blue-400 font-bold uppercase">Pedagogi Kepelbagaian Budaya</p>
+                </div>
+            </div>
+            <button id="themeToggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-yellow-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                <i id="themeIcon" data-lucide="moon" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 overflow-x-auto no-scrollbar sticky top-[73px] z-40 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto flex" id="tabBar">
+            <button data-tab="home" class="tab-btn flex items-center px-4 py-4 text-sm font-medium whitespace-nowrap border-b-2 border-blue-600 text-blue-600 dark:text-blue-400 transition-all">
+                <i data-lucide="graduation-cap" class="mr-2 w-4 h-4"></i> Fokus Exam
+            </button>
+            <button data-tab="topik1" class="tab-btn flex items-center px-4 py-4 text-sm font-medium whitespace-nowrap border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-blue-500 transition-all">
+                <i data-lucide="book" class="mr-2 w-4 h-4"></i> Topik 1: PKB
+            </button>
+            <button data-tab="topik2" class="tab-btn flex items-center px-4 py-4 text-sm font-medium whitespace-nowrap border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-blue-500 transition-all">
+                <i data-lucide="brain" class="mr-2 w-4 h-4"></i> Topik 2: Teori
+            </button>
+            <button data-tab="aplikasi" class="tab-btn flex items-center px-4 py-4 text-sm font-medium whitespace-nowrap border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-blue-500 transition-all">
+                <i data-lucide="lightbulb" class="mr-2 w-4 h-4"></i> Strategi & Contoh
+            </button>
+            <button data-tab="esei" class="tab-btn flex items-center px-4 py-4 text-sm font-medium whitespace-nowrap border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-blue-500 transition-all">
+                <i data-lucide="file-text" class="mr-2 w-4 h-4"></i> Formula Esei
+            </button>
+            <button data-tab="soalan" class="tab-btn flex items-center px-4 py-4 text-sm font-medium whitespace-nowrap border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-blue-500 transition-all">
+                <i data-lucide="help-circle" class="mr-2 w-4 h-4"></i> Q&A
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-8 pb-24">
+
+        <!-- Tab: Home -->
+        <div id="home" class="tab-content active animate-fadeIn">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 mb-8 text-white shadow-xl">
+                <h2 class="text-3xl font-bold mb-2">Nota Master A+ Exam</h2>
+                <p class="text-blue-100 mb-6">Panduan komprehensif untuk skor cemerlang Topik 1 & 2 berdasarkan MK dan silibus terkini.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20">
+                        <h4 class="font-bold text-lg mb-1">Sasaran</h4>
+                        <p class="text-sm">Jawapan lengkap mengikut kehendak pemeriksa peperiksaan.</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20">
+                        <h4 class="font-bold text-lg mb-1">Teori Wajib</h4>
+                        <p class="text-sm">Fokus aplikasi praktikal dalam konteks bilik darjah Malaysia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-6 border-l-4 border-blue-500 transition-all">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="chevron-right" class="text-blue-500 mr-3 w-6 h-6"></i>
+                    <h3 class="text-xl font-bold">Peta Strategi Menjawab</h3>
+                </div>
+                <ul class="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                    <li class="flex items-start">
+                        <i data-lucide="check-circle" class="text-green-500 mr-3 mt-1 w-5 h-5 shrink-0"></i>
+                        <p><strong>Bank Jawapan:</strong> Tab "Soalan & Jawapan" kini dikemas kini dengan esei penuh.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-lucide="check-circle" class="text-green-500 mr-3 mt-1 w-5 h-5 shrink-0"></i>
+                        <p><strong>Huraian Mendalam:</strong> Pastikan setiap teori disokong oleh impak sosial murid.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tab: Topik 1 -->
+        <div id="topik1" class="tab-content animate-fadeIn">
+            <h2 class="text-2xl font-bold mb-6">Topik 1: Pedagogi Kepelbagaian Budaya</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-6 border-l-4 border-blue-500">
+                <h3 class="text-xl font-bold mb-4">Definisi & Prinsip</h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    PKB merangkumi strategi yang membantu guru menguruskan kepelbagaian etnik secara harmoni. Antara prinsip utama:
+                </p>
+                <ul class="list-disc list-inside mt-4 space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>Kesedaran kendiri tentang bias budaya peribadi.</li>
+                    <li>Integrasi kandungan kurikulum yang inklusif untuk semua etnik.</li>
+                    <li>Pendidikan ekuiti (memberikan peluang sama rata kepada semua).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tab: Topik 2 -->
+        <div id="topik2" class="tab-content animate-fadeIn space-y-6">
+            <h2 class="text-2xl font-bold mb-6">Topik 2: Aplikasi Teori Utama</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="brain" class="text-blue-500 mr-3 w-6 h-6"></i>
+                    <h3 class="text-xl font-bold">Teori Kunci</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">Hafal 4 teori ini sebagai asas jawapan esei anda:</p>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                        <strong class="block text-blue-800 dark:text-blue-300 mb-1">Bronfenbrenner:</strong>
+                        <p class="text-sm">Hubungan murid dengan persekitaran bertingkat (Mikro, Meso, Ekso, Makro, Krono).</p>
+                    </div>
+                    <div class="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                        <strong class="block text-purple-800 dark:text-purple-300 mb-1">Vygotsky:</strong>
+                        <p class="text-sm">Kepentingan interaksi sosial (MKO, ZPD, Scaffolding).</p>
+                    </div>
+                    <div class="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                        <strong class="block text-orange-800 dark:text-orange-300 mb-1">James Banks:</strong>
+                        <p class="text-sm">Dimensi pendidikan multikultural & tahap integrasi kurikulum.</p>
+                    </div>
+                    <div class="p-4 bg-teal-50 dark:bg-teal-900/20 rounded-lg">
+                        <strong class="block text-teal-800 dark:text-teal-300 mb-1">Deardorff:</strong>
+                        <p class="text-sm">Proses kompetensi antara budaya (Sikap-Ilmu-Kemahiran-Hasil).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Aplikasi -->
+        <div id="aplikasi" class="tab-content animate-fadeIn">
+            <h2 class="text-2xl font-bold mb-6">Aplikasi & Strategi Malaysia</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-6 border-l-4 border-blue-500">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="lightbulb" class="text-blue-500 mr-3 w-6 h-6"></i>
+                    <h3 class="text-xl font-bold">Strategi PdP Malaysia</h3>
+                </div>
+                <ul class="list-disc list-inside space-y-3 text-gray-600 dark:text-gray-300">
+                    <li>Penggunaan nama watak pelbagai kaum dalam soalan matematik (Ali, Ah Chong, Muthu, Dayang).</li>
+                    <li>Aktiviti "Show and Tell" bertemakan warisan keluarga.</li>
+                    <li>Penyediaan sudut budaya (Sudut Warisan) di dalam bilik darjah.</li>
+                    <li>Pembentukan kumpulan heterogen (bercampur kaum) dalam amali sains.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tab: Formula Esei -->
+        <div id="esei" class="tab-content animate-fadeIn">
+            <h2 class="text-2xl font-bold mb-6">Formula Menjawab Esei A+</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 border-l-4 border-blue-500">
+                <h3 class="text-xl font-bold mb-6 text-center">Struktur Wajib</h3>
+                <div class="space-y-6">
+                    <div class="bg-blue-600 text-white p-6 rounded-xl text-center shadow-lg">
+                        <p class="font-bold text-2xl mb-1 tracking-widest">T + H + CM + I</p>
+                        <p class="text-sm opacity-80">(Teori + Huraian + Contoh Malaysia + Implikasi)</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <p class="text-sm italic text-gray-600 dark:text-gray-300">
+                            <strong>Contoh:</strong> "Mengikut Teori Vygotsky (T), interaksi sosial kritikal bagi kognitif. Di Malaysia (CM), guru boleh membentuk kumpulan heterogen. Huraian (H): Murid yang lebih mahir bantu yang lemah dalam bimbingan rakan sebaya. Implikasi (I): Nilai kerjasama dipupuk."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Soalan & Jawapan -->
+        <div id="soalan" class="tab-content animate-fadeIn space-y-8">
+            <h2 class="text-2xl font-bold mb-6 border-b pb-2">Jawapan Penuh Contoh Soalan</h2>
+            
+            <!-- Soalan 1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-t-8 border-blue-500">
+                <span class="text-xs font-bold text-blue-600 bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full border border-blue-200 uppercase">Struktur (5 Markah)</span>
+                <h3 class="text-lg font-extrabold mt-4 mb-4">S1: Terangkan maksud Zone of Proximal Development (ZPD) mengikut Vygotsky dalam konteks PKB.</h3>
+                <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p class="font-bold mb-2">Jawapan Penuh:</p>
+                    <p>
+                        <strong>ZPD</strong> merujuk kepada jurang antara tahap perkembangan sebenar murid (apa yang boleh dilakukan sendiri) dengan tahap perkembangan potensi (apa yang boleh dicapai dengan bantuan bimbingan). 
+                    </p>
+                    <p class="mt-2">
+                        Dalam konteks <strong>Pedagogi Kepelbagaian Budaya</strong>, guru mengenal pasti latar belakang budaya murid untuk memberikan sokongan yang sesuai. Contohnya, murid dari luar bandar yang kurang mahir bahasa pengantar dibantu melalui <strong>scaffolding</strong> oleh guru atau rakan sebaya yang lebih mahir (MKO). Ini membolehkan murid tersebut mencapai potensi akademik tanpa rasa terasing, sekali gus merapatkan jurang prestasi antara etnik.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Soalan 2 -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-t-8 border-green-500">
+                <span class="text-xs font-bold text-green-600 bg-green-50 dark:bg-green-900/30 px-3 py-1 rounded-full border border-green-200 uppercase">Huraian (10 Markah)</span>
+                <h3 class="text-lg font-extrabold mt-4 mb-4">S2: Huraikan aplikasi Pendekatan Transformasi James Banks dalam bilik darjah untuk memupuk perpaduan.</h3>
+                <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p class="font-bold mb-2">Jawapan Penuh:</p>
+                    <p>
+                        <strong>Pendekatan Transformasi</strong> merupakan tahap ketiga dalam kurikulum multikultural James Banks di mana struktur kurikulum diubah untuk membolehkan murid melihat konsep dari perspektif pelbagai budaya.
+                    </p>
+                    <ul class="list-disc list-inside mt-2 space-y-2">
+                        <li><strong>Integrasi Kandungan:</strong> Guru memasukkan sumbangan tokoh pelbagai etnik dalam subjek Sejarah. Contohnya, membincangkan sumbangan kolektif dalam perjuangan kemerdekaan (T+H+CM).</li>
+                        <li><strong>Berfikir Secara Kritikal:</strong> Murid menganalisis isu sosial dari sudut pandang kumpulan berbeza untuk mengurangkan stereotaip.</li>
+                        <li><strong>Impak:</strong> Rasa hormat dan empati terbina melalui pemahaman warisan kaum lain (Implikasi).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Soalan 3 (Esei) -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-t-8 border-red-500 text-left">
+                <span class="text-xs font-bold text-red-600 bg-red-50 dark:bg-red-900/30 px-3 py-1 rounded-full border border-red-200 uppercase">Esei (20 Markah)</span>
+                <h3 class="text-lg font-extrabold mt-4 mb-4">S3: Analisis persekitaran sekolah menggunakan Teori Ekologi Bronfenbrenner bagi meningkatkan keharmonian kaum di Malaysia.</h3>
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg text-sm text-gray-700 dark:text-gray-300 leading-relaxed space-y-4">
+                    <p class="font-bold text-red-600 border-b pb-1">Analisis Esei Penuh:</p>
+                    
+                    <div>
+                        <p class="font-bold underline">1. Pendahuluan:</p>
+                        <p>Keharmonian kaum merupakan elemen penting dalam pendidikan Malaysia. Mengikut Teori Bronfenbrenner, perkembangan individu dipengaruhi oleh sistem persekitaran yang saling berkaitan.</p>
+                    </div>
+
+                    <div>
+                        <p class="font-bold underline">2. Mikrosistem (Interaksi Langsung):</p>
+                        <p>Sistem terdekat murid. Guru memastikan aktiviti bilik darjah adalah heterogen (pelbagai kaum). Contohnya, pasukan sukan campuran membina kepercayaan dan kerjasama (CM+I).</p>
+                    </div>
+
+                    <div>
+                        <p class="font-bold underline">3. Mesosistem (Hubungan Antara Sistem):</p>
+                        <p>Hubungan sekolah dan ibu bapa. Program RIMUP yang melibatkan ibu bapa pelbagai etnik mengukuhkan mesej perpaduan antara rumah dan sekolah.</p>
+                    </div>
+
+                    <div>
+                        <p class="font-bold underline">4. Makrosistem (Budaya & Dasar):</p>
+                        <p>Melibatkan ideologi dan dasar negara. Penerapan Rukun Negara dalam kurikulum membentuk jati diri murid sebagai warga Malaysia yang bertoleransi.</p>
+                    </div>
+
+                    <div>
+                        <p class="font-bold underline">5. Kronosistem (Perubahan Masa):</p>
+                        <p>Perubahan masa kini. Penggunaan teknologi untuk pertukaran budaya secara maya (Online Cultural Exchange) memastikan perpaduan kekal relevan dengan zaman digital.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Mobile Navigation -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t dark:border-gray-700 py-3 md:hidden z-50 transition-colors duration-300">
+        <div class="flex justify-around items-center">
+            <button onclick="switchTab('home')" class="footer-btn flex flex-col items-center text-blue-600" id="foot-home">
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                <span class="text-[10px] mt-1">Exam</span>
+            </button>
+            <button onclick="switchTab('topik1')" class="footer-btn flex flex-col items-center text-gray-500" id="foot-topik1">
+                <i data-lucide="book" class="w-5 h-5"></i>
+                <span class="text-[10px] mt-1">PKB</span>
+            </button>
+            <button onclick="switchTab('topik2')" class="footer-btn flex flex-col items-center text-gray-500" id="foot-topik2">
+                <i data-lucide="brain" class="w-5 h-5"></i>
+                <span class="text-[10px] mt-1">Teori</span>
+            </button>
+            <button onclick="switchTab('soalan')" class="footer-btn flex flex-col items-center text-gray-500" id="foot-soalan">
+                <i data-lucide="help-circle" class="w-5 h-5"></i>
+                <span class="text-[10px] mt-1">Q&A</span>
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Tab Switching Logic
+        const tabs = document.querySelectorAll('.tab-btn');
+        const contents = document.querySelectorAll('.tab-content');
+
+        function switchTab(tabId) {
+            // Update Active Content
+            contents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === tabId) {
+                    content.classList.add('active');
+                }
+            });
+
+            // Update Tab Button Styles (Desktop)
+            tabs.forEach(btn => {
+                btn.classList.remove('border-blue-600', 'text-blue-600', 'dark:text-blue-400');
+                btn.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+                if (btn.getAttribute('data-tab') === tabId) {
+                    btn.classList.add('border-blue-600', 'text-blue-600', 'dark:text-blue-400');
+                    btn.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+                }
+            });
+
+            // Update Footer Styles (Mobile)
+            const footerBtns = document.querySelectorAll('.footer-btn');
+            footerBtns.forEach(btn => {
+                btn.classList.remove('text-blue-600');
+                btn.classList.add('text-gray-500');
+            });
+            const activeFoot = document.getElementById(`foot-${tabId}`);
+            if (activeFoot) {
+                activeFoot.classList.add('text-blue-600');
+                activeFoot.classList.remove('text-gray-500');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.getAttribute('data-tab');
+                switchTab(target);
+            });
+        });
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        let isDark = false;
+
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.body.classList.add('dark');
+                themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.body.classList.remove('dark');
+                themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons(); // Update icons after changing theme
+        });
+
+        // Default state
+        switchTab('home');
+    </script>
+</body>
+</html>
